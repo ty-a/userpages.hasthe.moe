@@ -1,0 +1,19 @@
+extends layout
+block content
+
+  table(class="table table-striped table-bordered")
+    thead(class="thead-dark")
+      tr
+        th Username
+        th Language
+        th Userpage
+        th
+    tbody
+      each value, username in data
+        each profile, lang in value
+          tr
+            td= username
+            td= lang
+            td= profile
+            td
+              a(href=`/edit/${username}`) Edit

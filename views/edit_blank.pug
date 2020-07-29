@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  p
+    | This page allows you to lookup a user's userpage templates. If you don't know who you're wanting to edit, check out
+    a(href="/users")  the users table 
+    | to view a table of all userpages I make userpages is currently making.
+
+  form(action="/edit" method="GET" )
+    div(class="form-group")
+      label(for="user") Username
+      input(type="text" class="form-control" id="user" name="user")
+
+    div(class="btn-group float-center")
+      input(type="submit" class="btn btn-primary")

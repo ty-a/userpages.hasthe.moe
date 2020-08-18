@@ -7,12 +7,12 @@ var passport = require('passport');
 var sqlite3 = require('sqlite3').verbose();
 var session = require('express-session');
 var SQLiteStore = require('connect-sqlite3')(session);
+var config = require('./config/config.json');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/api');
 var editRouter = require('./routes/edit');
-
 
 var app = express();
 var flash = require('flash');
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('trust proxy', 1) // trust first proxy
 app.use(session({
   store: new SQLiteStore({dir:'./db/', db:'sessions.db'}),
-  secret: '09s3ejgmedrgj90c bml;xbediorg',
+  secret: config.sessionSecret,
   resave: true,
   saveUninitialized: true,
   cookie: {

@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var users = require('../config/users.json');
 var config = require('../config/config.json');
-var tymw = require('Q:/nodedev/tynodemw/bot.js');
+var tymw = require('tynodemw');
 
 let urlRegex = /(https?:\/\/[\w\d-]*\.(fandom\.com|wikia\.org))\/(.*\/|)(f|index|wiki)/;
 

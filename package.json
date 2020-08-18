@@ -21,6 +21,7 @@
     "passport-local": "^1.0.0",
     "pug": "^2.0.4",
     "sqlite3": "^4.2.0",
+    "tynodemw": "github:ty-a/tynodemw",
     "yargs": "^15.3.1"
   }
 }

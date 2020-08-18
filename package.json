@@ -22,6 +22,6 @@
     "pug": "^2.0.4",
     "sqlite3": "^4.2.0",
     "tynodemw": "github:ty-a/tynodemw",
-    "yargs": "^15.3.1"
+    "yargs": "^15.4.1"
   }
 }

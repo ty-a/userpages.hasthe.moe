@@ -4,6 +4,8 @@ var users = require('../config/users.json');
 var config = require('../config/config.json');
 var tymw = require('tynodemw');
 
+tymw.setUserInfo(config.username, config.password);
+
 let urlRegex = /(https?:\/\/[\w\d-]*\.(fandom\.com|wikia\.org))\/(.*\/|)(f|index|wiki)/;
 
 /* GET home page. */

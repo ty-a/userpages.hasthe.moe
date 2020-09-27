@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var users = require('../config/users.json'); 
+var users = require('../config/users.json');
 var config = require('../config/config.json');
 var tymw = require('tynodemw');
 
@@ -78,9 +78,17 @@ router.post('/create', function(req, res, next) {
       } else if(users[req.body.user].hasOwnProperty('en')) {
         // backup language is english
         content = users[req.body.user]['en'];
+
+        // Ensure we don't try to use Fandom templates on Gamepedia
+        if(lang == "Gamepedia") {
+          res.json({status:false, reason:'Gamepedia Wiki, but no Gamepedia template.'});
+          return;
+        }
+
       } else {
         console.error('no english template for ' + req.body.user);
         res.json({status:false, reason:'no English template fallback'});
+        return;
       }
       tymw.edit("User:" + req.body.user, content, "Creating userpage for " + req.body.user)
         .then(function(resp) {

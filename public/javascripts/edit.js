@@ -1,6 +1,7 @@
 function addLanguage(lang) {
 // check inputs
-  // only allow letters and dashes
+  // only allow letters and dashes, Gamepedia is also a legal value,
+  //    but matches in the regex
   let re = /[\w-]{1,10}/;
   if(!re.test(lang)) {
     alert("invalid language code");

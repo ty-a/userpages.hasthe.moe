@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var users = require('../config/users.json');
+var users = require('../config/users.json'); 
 var config = require('../config/config.json');
 var tymw = require('tynodemw');
 
 tymw.setUserInfo(config.username, config.password);
 
-let urlRegex = /(https?:\/\/[\w\d-]*\.(fandom\.com|wikia\.org))\/(.*\/|)(f|index|wiki)/;
+let urlRegex = /(https?:\/\/[\w\d-]*\.(fandom\.com|wikia\.org|gamepedia\.com))\/(.*\/|)(f|index|wiki)/;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -28,7 +28,7 @@ router.post('/create', function(req, res, next) {
     return;
   }
 
-  if(!req.body.url.includes(".fandom.com") && !req.body.url.includes(".wikia.org")) {
+  if(!req.body.url.includes(".fandom.com") && !req.body.url.includes(".wikia.org") && !req.body.url.includes(".gamepedia.com")) {
     res.status(400);
     res.json({status: false, reason: "invalid URL"});
     return;
@@ -56,6 +56,11 @@ router.post('/create', function(req, res, next) {
     lang = "en";
   } else {
     lang = matches[3].replace("\/", "");
+  }
+
+  // Gamepedia is considered a language by the bot, currently don't support different languages
+  if(url.includes(".gamepedia.com")) {
+    lang = "Gamepedia";
   }
 
   tymw.logIn(force=false, skip=true).then(function(resp) {

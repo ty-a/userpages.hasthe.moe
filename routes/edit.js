@@ -26,14 +26,14 @@ router.get('/:user/', function(req, res, next) {
     res.redirect('/');
     return;
   }
-  
+
   if(typeof config[req.params.user] == 'undefined') {
     var pages = {};
     res.locals.noPages = true
     res.flash('primary', 'Creating new user');
   }
 
-  res.render('edit', { title: 'Edit userpages 2', user: req.params.user, pages: config[req.params.user] });
+  res.render('edit', { title: 'Edit userpages', user: req.params.user, pages: config[req.params.user] });
 
 });
 
@@ -49,7 +49,12 @@ router.post('/:user', function(req, res, next) {
     if(lang == "user")
       continue;
 
-    newData[lang] = req.body[lang];
+    var holder = req.body[lang];
+    if(lang.toLowerCase() == "gamepedia") {
+      lang = "Gamepedia"; // ensure we have consistent casing
+    }
+
+    newData[lang] = holder;
   }
   console.log(newData);
   console.log(Object.keys(newData).length);
@@ -68,7 +73,7 @@ router.post('/:user', function(req, res, next) {
     if(err) {
       console.error(err);
       req.flash('danger', 'Unable to write new config file. Please contact @tya.');
-      res.render('edit', { title: 'Edit userpages 2', user: req.params.user, pages: config[req.params.user] });
+      res.render('edit', { title: 'Edit userpages', user: req.params.user, pages: config[req.params.user] });
       return;
     }
     if(didDelete) {

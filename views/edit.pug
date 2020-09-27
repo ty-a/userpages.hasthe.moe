@@ -4,7 +4,9 @@ block scripts
 block content
   p This form allows you to create new and edit existing userpages created by I make userpages. Please double check your edits as they go live as soon as you hit "Submit".
 
-  p To delete a user, simply remove all their templates and hit submit. 
+  p To add userpages for Gamepedia, type in "Gamepedia" as the language. Gamepedia has scary transclusion from the Gamepedia Help Wiki (gphelp:) rather than Community Central (w:).
+
+  p To delete a user, simply remove all their templates and hit submit.
   div(class="form-group")
     form(id="editform" method="POST")
       div(class="form-group")
@@ -22,7 +24,6 @@ block content
                   input(type="text" id=`${language}` required name=`${language}` class="form-control" value=`${template}`)
                   span(class="input-group-btn")
                     button(type="button", class="btn btn-danger", onClick=`deleteLanguage('${language}');`) Delete
-
 
       input(type="submit" class="btn btn-primary")
 

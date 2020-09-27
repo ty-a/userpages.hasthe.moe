@@ -34,7 +34,7 @@ app.use(session({
   resave: true,
   saveUninitialized: true,
   cookie: {
-    secure: app.get('env') === 'production'? true: false, // dev env is http
+    secure: (app.get('env') === 'production') ? true: false, // dev env is http
     maxAge: 1000 * 60 * 60 * 24 * 7 // one week
   }
 }));
